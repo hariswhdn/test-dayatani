@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@font-face {
+  font-family: "Urbanist";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/Urbanist-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Urbanist";
+  font-style: normal;
+  font-weight: 600;
+  src: url("../fonts/Urbanist-SemiBold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Urbanist";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../fonts/Urbanist-Bold.ttf") format("truetype");
+}
+#root {
+  color: #191d23;
+  font-family: "Urbanist";
+  font-size: 14px;
+  line-height: 20px;
+}
+input:focus {
+  outline: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
