@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Farmers from "./pages/Farmers";
 import FarmerManage from "./pages/FarmerManage";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -71,6 +72,7 @@ function App() {
             </Dashboard>
           }
         />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

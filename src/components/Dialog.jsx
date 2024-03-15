@@ -1,5 +1,5 @@
 import Icon from "../components/Icon";
-import ReactHtmlParser from "react-html-parser";
+import parse from "html-react-parser";
 import spinner from "../assets/spinner.png";
 
 const Dialog = ({
@@ -33,8 +33,8 @@ const Dialog = ({
             <div className="flex p-5">
               <p>
                 {
-                  /** ReactHtmlParser digunakan untuk menerjemahkan <b/> dari text */
-                  ReactHtmlParser(text)
+                  /** parse digunakan untuk menerjemahkan <b/> dari text */
+                  parse(text)
                 }
               </p>
             </div>
