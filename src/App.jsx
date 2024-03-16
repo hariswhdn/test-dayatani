@@ -2,6 +2,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Farmers from "./pages/Farmers";
 import FarmerManage from "./pages/FarmerManage";
+import CropDetection from "./pages/CropDetection";
+import CropImages from "./pages/CropImages";
+import Chatbot from "./pages/Chatbot";
+import Assets from "./pages/Assets";
 import NotFound from "./pages/NotFound";
 
 function App() {
@@ -44,7 +48,7 @@ function App() {
           path="/crop-detection"
           element={
             <Dashboard>
-              <></>
+              <CropDetection />
             </Dashboard>
           }
         />
@@ -52,7 +56,7 @@ function App() {
           path="/crop-images"
           element={
             <Dashboard>
-              <></>
+              <CropImages />
             </Dashboard>
           }
         />
@@ -60,7 +64,7 @@ function App() {
           path="/chatbot"
           element={
             <Dashboard>
-              <></>
+              <Chatbot />
             </Dashboard>
           }
         />
@@ -68,7 +72,7 @@ function App() {
           path="/assets"
           element={
             <Dashboard>
-              <></>
+              <Assets />
             </Dashboard>
           }
         />

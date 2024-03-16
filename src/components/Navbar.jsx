@@ -2,7 +2,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Icon from "../components/Icon";
 import photo from "../assets/photo.png";
 
-const Navbar = () => {
+const Navbar = ({ setShowSidebar }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -13,13 +13,23 @@ const Navbar = () => {
         (location.pathname.match(/[/]/g) || []).length > 1 ? (
           <button
             type="button"
-            className="flex items-center justify-center rounded-full bg-[#FEFDF8] border-0 w-10 h-10"
+            className="flex items-center justify-center rounded-full bg-[#FEFDF8] w-10 h-10"
             onClick={() => navigate("/")}
           >
             <Icon icon="arrow_back" color="#22231F" />
           </button>
         ) : (
-          <></>
+          <button
+            type="button"
+            className={[
+              "items-center justify-center",
+              "md:hidden",
+              "max-md:flex",
+            ].join(" ")}
+            onClick={() => setShowSidebar((v) => !v)}
+          >
+            <Icon icon="menu" color="#22231F" />
+          </button>
         )
       }
       <div className="ml-auto flex gap-x-2.5 items-center">

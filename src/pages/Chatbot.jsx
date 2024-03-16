@@ -1,5 +1,5 @@
 const Chatbot = () => {
-  return <></>;
+  return <span>Chatbot Page</span>;
 };
 
 export default Chatbot;

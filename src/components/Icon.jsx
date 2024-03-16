@@ -6,6 +6,7 @@ const Icon = ({
   color = "#000000",
   fill = color,
   style,
+  className = "",
 }) => {
   const arr_icon = {
     account_circle: [
@@ -198,6 +199,7 @@ const Icon = ({
 
   return (
     <svg
+      className={className}
       width={`${size}px`}
       height={`${size}px`}
       fill={fill}

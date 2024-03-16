@@ -1,5 +1,5 @@
 const CropImages = () => {
-  return <></>;
+  return <span>Crop Images Page</span>;
 };
 
 export default CropImages;

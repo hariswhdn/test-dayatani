@@ -26,11 +26,11 @@ const Alert = ({
   useEffect(() => {
     /** Jika sudah ter-init */
     if (init) {
-      /** Jalankan timer untuk alert selama yang diberikan atau 2500ms, lalu jalankan onEnd() yang diberikan dan setel init ke false */
+      /** Jalankan timer untuk alert selama yang diberikan atau 3000ms, lalu jalankan onEnd() yang diberikan dan setel init ke false */
       setTimeout(() => {
         onEnd();
         setInit(false);
-      }, time || 2500);
+      }, time || 3000);
     }
   }, [init]);
 

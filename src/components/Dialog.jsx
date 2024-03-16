@@ -13,7 +13,7 @@ const Dialog = ({
   yes_text,
 }) => {
   return (
-    <div className="absolute top-0 left-0 w-full h-full bg-black/50 justify-center items-center flex">
+    <div className="absolute top-0 left-0 w-full h-full bg-black/20 justify-center items-center flex">
       {
         /** Jika isLoading = true (tanda sudah yes), munculkan spinner */
         isLoading ? (

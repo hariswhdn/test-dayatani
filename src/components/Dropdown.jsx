@@ -4,7 +4,7 @@ const Dropdown = ({ options, isBottom, onSelect }) => {
   return (
     <ul
       className={[
-        "border border-[#E1E3D4] text-[#4D4F47] divide-[#E1E3D4] rounded-xl absolute z-10 divide-y text-base font-bold right-[calc(100%_+_6px)] bg-white flex flex-col divide-y",
+        "border border-[#E1E3D4] text-[#4D4F47] divide-[#E1E3D4] rounded-xl absolute z-10 text-base font-bold right-[calc(100%_+_6px)] bg-white flex flex-col divide-y",
         isBottom ? "bottom-0" : "top-0",
         "[&>li]:flex [&>li]:cursor-pointer [&>li]:gap-x-3 [&>li]:px-3 [&>li]:py-2",
       ].join(" ")}

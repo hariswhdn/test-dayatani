@@ -95,7 +95,9 @@ const FarmerManage = ({ objDialog, setObjDialog, setObjAlert }) => {
   }, [name, idCardNumber, birthDate]);
 
   const onSubmit = (e) => {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+    }
     /** Setel isCanError ke true agar saat value field berganti, terjadi check error */
     setIsCanError(true);
     /** Jika value field ada yang kosong, jalankan check error dan hentikan proses */
@@ -173,78 +175,107 @@ const FarmerManage = ({ objDialog, setObjDialog, setObjAlert }) => {
   }, [error]);
 
   return (
-    <div className="flex flex-col gap-y-3">
-      <div className="flex min-h-10 items-center">
-        <p className="text-xl font-semibold text-[#111110]">
-          {location.pathname.includes("/farmer/edit")
-            ? "Edit"
-            : location.pathname.includes("/farmer/add")
-            ? "Add"
-            : "Detail"}
-          &nbsp;Farmer
-        </p>
-      </div>
-      <div className="flex flex-col relative">
-        <form
-          onSubmit={(e) => onSubmit(e)}
-          className="flex flex-col bg-[#FEFDF8] rounded-3xl p-6 gap-y-5 w-full max-w-[760px]"
-        >
-          <Field
-            /** Jika menemukan fieldnya di arrError */
-            isError={arrError.indexOf("name") >= 0}
-            textError="Please fill in this field"
-            value={name}
-            placeholder="Enter Name"
-            label="Farmer Name"
-            name="name"
-            disabled={isReadOnly}
-            onInput={(e) => setName(e.target.value)}
-          />
-          <Field
-            /** Jika menemukan fieldnya di arrError atau error cocok */
-            isError={arrError.indexOf("idCardNumber") >= 0 || error === 409}
-            textError={
-              error === 409
-                ? "Oops! There's a Conflict Here"
-                : "Please fill in this field"
+    <div
+      className={[
+        "flex flex-col gap-y-3",
+        "max-md:h-full max-md:justify-between",
+      ].join(" ")}
+    >
+      <div className="flex flex-col gap-y-3">
+        <div className="flex min-h-10 items-center">
+          <p className="text-xl font-semibold text-[#111110]">
+            {location.pathname.includes("/farmer/edit")
+              ? "Edit"
+              : location.pathname.includes("/farmer/add")
+              ? "Add"
+              : "Detail"}
+            &nbsp;Farmer
+          </p>
+        </div>
+        <div className="flex flex-col relative">
+          <form
+            onSubmit={(e) => onSubmit(e)}
+            className="flex flex-col bg-[#FEFDF8] rounded-3xl p-6 gap-y-5 w-full max-w-[760px]"
+          >
+            <Field
+              /** Jika menemukan fieldnya di arrError */
+              isError={arrError.indexOf("name") >= 0}
+              textError="Please fill in this field"
+              value={name}
+              placeholder="Enter Name"
+              label="Farmer Name"
+              name="name"
+              disabled={isReadOnly}
+              onInput={(e) => setName(e.target.value)}
+            />
+            <Field
+              /** Jika menemukan fieldnya di arrError atau error cocok */
+              isError={arrError.indexOf("idCardNumber") >= 0 || error === 409}
+              textError={
+                error === 409
+                  ? "Oops! There's a Conflict Here"
+                  : "Please fill in this field"
+              }
+              value={idCardNumber}
+              type="number"
+              placeholder="Enter ID Card Number"
+              label="ID Card Number"
+              name="idCardNumber"
+              disabled={isReadOnly}
+              onInput={(e) => setIdCardNumber(e.target.value)}
+            />
+            <Field
+              /** Jika menemukan fieldnya di arrError */
+              isError={arrError.indexOf("birthDate") >= 0}
+              textError="Please fill in this field"
+              value={birthDate}
+              type="date"
+              placeholder="Enter Birthdate"
+              label="Birthdate"
+              name="birthDate"
+              disabled={isReadOnly}
+              onChange={(e) => setBirthDate(e.target.value)}
+            />
+            {
+              /** Jika tidak di halaman detail, berarti add/edit */
+              !isReadOnly ? (
+                <button
+                  type="submit"
+                  className={[
+                    "flex place-self-end items-center justify-center px-4 py-[9px] bg-[#00371D] text-[#CCEE24] border border-[#00371D] font-semibold rounded-xl",
+                    "max-md:hidden",
+                  ].join(" ")}
+                >
+                  {location.pathname.includes("/farmer/edit")
+                    ? "Save Edit"
+                    : "Add Farmer"}
+                </button>
+              ) : (
+                <></>
+              )
             }
-            value={idCardNumber}
-            type="number"
-            placeholder="Enter ID Card Number"
-            label="ID Card Number"
-            name="idCardNumber"
-            disabled={isReadOnly}
-            onInput={(e) => setIdCardNumber(e.target.value)}
-          />
-          <Field
-            /** Jika menemukan fieldnya di arrError */
-            isError={arrError.indexOf("birthDate") >= 0}
-            textError="Please fill in this field"
-            value={birthDate}
-            type="date"
-            placeholder="Enter Birthdate"
-            label="Birthdate"
-            name="birthDate"
-            disabled={isReadOnly}
-            onChange={(e) => setBirthDate(e.target.value)}
-          />
-          {
-            /** Jika tidak di halaman detail, berarti add/edit */
-            !isReadOnly ? (
-              <button
-                type="submit"
-                className="flex place-self-end items-center justify-center px-4 py-[9px] bg-[#00371D] text-[#CCEE24] border border-[#00371D] font-semibold rounded-xl"
-              >
-                {location.pathname.includes("/farmer/edit")
-                  ? "Save Edit"
-                  : "Add Farmer"}
-              </button>
-            ) : (
-              <></>
-            )
-          }
-        </form>
+          </form>
+        </div>
       </div>
+      {!isReadOnly ? (
+        <div
+          className={[
+            "-mx-[20px] -mb-6 py-4 px-5 border-t border-[#D3D6C4]",
+            "md:hidden",
+          ].join(" ")}
+        >
+          <button
+            onClick={() => onSubmit()}
+            className="flex items-center justify-center px-4 w-full py-[9px] bg-[#00371D] text-[#CCEE24] border border-[#00371D] font-semibold rounded-lg"
+          >
+            {location.pathname.includes("/farmer/edit")
+              ? "Save Edit"
+              : "Add Farmer"}
+          </button>
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

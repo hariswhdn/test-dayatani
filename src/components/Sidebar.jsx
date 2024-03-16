@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Icon from "../components/Icon";
 import logo from "../assets/logo.svg";
 
-const Sidebar = () => {
+const Sidebar = ({ showSidebar, setShowSidebar }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -60,9 +60,19 @@ const Sidebar = () => {
     (o.id !== 1 && location.pathname.includes(o.path));
 
   return (
-    <aside className="flex w-[200px] flex-col py-[48px] px-[3px] gap-y-6 border-r border-[#C2CFD6]">
+    <aside
+      className={[
+        "min-w-[200px] w-[200px] flex-col py-[48px] px-[3px] gap-y-6 border-r border-[#C2CFD6]",
+        "md:flex",
+        "max-md:absolute max-md:top-0 max-md:left-0 max-md:z-30 max-md:bg-[#EDEFE3] max-md:h-full",
+        showSidebar ? "max-md:flex" : "max-md:hidden",
+      ].join(" ")}
+    >
       <div
-        onClick={() => navigate("/")}
+        onClick={() => {
+          setShowSidebar(false);
+          navigate("/");
+        }}
         className="w-auto h-9 flex cursor-pointer mx-auto items-center justify-center overflow-hidden"
       >
         <img src={logo} className="w-auto max-w-[unset] h-full" alt="logo" />
@@ -77,7 +87,10 @@ const Sidebar = () => {
         {arr_sidebar.map((o) => (
           <li
             key={o.id}
-            onClick={() => navigate(Array.isArray(o.path) ? o.path[0] : o.path)}
+            onClick={() => {
+              setShowSidebar(false);
+              navigate(Array.isArray(o.path) ? o.path[0] : o.path);
+            }}
             className={[
               isSelected(o)
                 ? "after:content-[''] after:absolute after:top-0 after:left-0 after:w-[3px] after:bg-[green] after:rounded-r-[10px] after:h-full"
